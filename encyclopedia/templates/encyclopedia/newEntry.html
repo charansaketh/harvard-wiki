@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>Add New Entry</h1>
+    {% if error %}
+        <div style="margin: 2px;color: red;">{{ error }}</div>
+    {% endif %}
+    <div class="form-group">
+        <form action="{% url 'encyclopedia:newEntry' %}" method="POST">
+            {% csrf_token %}
+            <div class="row" style="margin-top: 10px;margin-bottom: 10px;">
+                <div class="col-10">
+                    <input class="form-control" type="text" name="title" placeholder="Please enter title here" autocomplete="off">
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-10">
+                    <textarea class="form-control" name="description" cols="50" rows="15" placeholder="Please enter description here"></textarea>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-10">
+                    <input class="btn btn-default btn-outline-secondary" type="submit" value="Save">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
